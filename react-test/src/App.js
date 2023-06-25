@@ -1,12 +1,10 @@
 import "./App.css";
-import Child from "./Child"; 
+import ProductsList from "./ProductsList";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello React Project</h1>
-      <h2>Start ediiting to see the magic happen!</h2>
-      <Child />
+      <ProductsList />
     </div>
   )
 }
