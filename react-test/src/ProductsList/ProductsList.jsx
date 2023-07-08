@@ -1,6 +1,6 @@
 import ProductCard from '../ProductCard'
 import "./ProductsList.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const products = [
     {
@@ -38,9 +38,15 @@ function getProductsApi(callback) {
 function ProductsList() {
   let [isLoading, setLoadingState] = useState(true);
   let [allProducts, setAllProducts] = useState([]);
-  getProductsApi(function (res) {
-    setAllProducts(res);
-    setLoadingState(false);
+  // useEffect would be called once on mounting
+  // next everytime on state change of dependency array variables
+  useEffect(() => {
+    getProductsApi(function (res) {
+      console.log("api started1");
+      setAllProducts(res);
+      setLoadingState(false);
+      console.log("api ended");
+    });
   });
   if (isLoading) {
     return <div>Loading....</div>
