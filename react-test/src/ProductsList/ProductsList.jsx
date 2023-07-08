@@ -2,59 +2,22 @@ import ProductCard from '../ProductCard'
 import "./ProductsList.css";
 import { useEffect, useState } from 'react';
 
-const products = [
-    {
-      id: 1,
-      title: "Apple iPhone 14",
-      price: "Rs. 1,00,000"
-    },
-    {
-      id: 2,
-      title: "Apple iPhone 13",
-      price: "Rs. 70,000"
-    },
-    {
-      id: 3,
-      title: "Google Pixel 7",
-      price: "Rs. 50,000"
-    },
-    {
-      id: 4,
-      title: "Nokia 1100",
-      price: "Rs. 2,000"
-    },
-    {
-      id: 5,
-      title: "Samsung Galaxy S10",
-      price: "Rs. 1,00,000"
-    },
-    {
-      id: 6,
-      title: "Sony Xperia S10",
-      price: "Rs. 1,00,000"
-    }
-  ];
-
-function getProductsApi(callback) {
-  setTimeout(function () {
-    callback(products);
-  }, 1000);
-}
-
-function ProductsList() {
+function ProductsList({ cart, increaseQuantity, decreaseQuantity }) {
   let [isLoading, setLoadingState] = useState(true);
   let [allProducts, setAllProducts] = useState([]);
   // useEffect would be called once on mounting
   // next everytime on state change of dependency array variables
   // add [] in useEffect render only once during mounting
   useEffect(() => {
-    getProductsApi(function (res) {
-      console.log("api started1");
+    fetch("https://602fc537a1e9d20017af105e.mockapi.io/api/v1//products")
+    .then((response) => {
+      return response.json();
+    })
+    .then((res) => {
       setAllProducts(res);
       setLoadingState(false);
-      console.log("api ended");
     });
-  }, [allProducts, isLoading]);
+  }, []);
   // function useEffect(callback, dependency array) {var counter;if(dep===[]&& counter<1){counter++; callback()} if(count)if(dep[0]!==prevdep[0]){callback()}}
   // setIsLoading(true);
   if (isLoading) {
@@ -69,9 +32,11 @@ function ProductsList() {
           {allProducts.map(function (product) {
               return (
                 <ProductCard 
-                  title={product.title} 
-                  price={product.price} 
+                  product={product}
                   key={product.id}
+                  cart={cart}
+                  increaseQuantity={increaseQuantity}
+                  decreaseQuantity={decreaseQuantity}
                 />
               );
           })}
