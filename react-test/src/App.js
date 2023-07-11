@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import ProductsList from "./ProductsList";
+import ProductsList from "./Components/ProductsList";
+import CartContext from "./Context/CartContext";
+import Cart from "./Components/Cart";
 
 export default function App() {
   const [cart, setCart] = useState({});
@@ -27,15 +29,14 @@ export default function App() {
     }
     setCart(newCart);
   }
-  
+  const cartKeysLength = Object.keys(cart).length;
   return (
-    <div className="App">
-      <ProductsList 
-        cart={cart}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-      />
-    </div>
+    <CartContext.Provider value={{ cart, increaseQuantity, decreaseQuantity}}>
+      <div className="App">
+        {cartKeysLength > 0 ? <Cart /> : null}
+        <ProductsList />
+      </div>
+    </CartContext.Provider>
   )
 }
 

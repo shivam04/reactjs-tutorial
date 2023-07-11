@@ -3,6 +3,7 @@ import "./ProductsList.css";
 import { useEffect, useState } from 'react';
 
 function ProductsList({ cart, increaseQuantity, decreaseQuantity }) {
+  console.log("productlist");
   let [isLoading, setLoadingState] = useState(true);
   let [allProducts, setAllProducts] = useState([]);
   // useEffect would be called once on mounting
