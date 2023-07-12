@@ -1,8 +1,8 @@
 import ProductCard from '../ProductCard'
 import "./ProductsList.css";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 
-function ProductsList({ cart, increaseQuantity, decreaseQuantity }) {
+function ProductsList() {
   console.log("productlist");
   let [isLoading, setLoadingState] = useState(true);
   let [allProducts, setAllProducts] = useState([]);
@@ -35,9 +35,6 @@ function ProductsList({ cart, increaseQuantity, decreaseQuantity }) {
                 <ProductCard 
                   product={product}
                   key={product.id}
-                  cart={cart}
-                  increaseQuantity={increaseQuantity}
-                  decreaseQuantity={decreaseQuantity}
                 />
               );
           })}
@@ -61,4 +58,4 @@ function ProductsList({ cart, increaseQuantity, decreaseQuantity }) {
 
 // only child re-render
 
-export default ProductsList;
+export default memo(ProductsList);
