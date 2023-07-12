@@ -1,6 +1,7 @@
 import ProductCard from '../ProductCard'
 import "./ProductsList.css";
 import { useEffect, useState, memo } from 'react';
+import { Link } from 'react-router-dom';
 
 function ProductsList() {
   console.log("productlist");
@@ -29,16 +30,19 @@ function ProductsList() {
       />)
   } else {
     return ( 
-      <div className="products">
-          {allProducts.map(function (product) {
-              return (
-                <ProductCard 
-                  product={product}
-                  key={product.id}
-                />
-              );
-          })}
-      </div>
+      <>
+        <Link to="/cart" className='button-link'>Cart</Link>
+        <div className="products">
+            {allProducts.map(function (product) {
+                return (
+                  <ProductCard 
+                    product={product}
+                    key={product.id}
+                  />
+                );
+            })}
+        </div>
+      </>
     );
   }
 }
