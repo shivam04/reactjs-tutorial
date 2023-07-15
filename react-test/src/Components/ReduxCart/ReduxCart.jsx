@@ -1,16 +1,12 @@
-import CartContext from "../../Context/CartContext";
-import useWindowsize from "../../Hooks/useWindowSize";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
-function Cart() {
-    const { cart } = useContext(CartContext);
-    const cartList = Object.values(cart);
-    const windowSize = useWindowsize();
-    console.log(windowSize);
+function ReduxCart() {
+    const cart = useSelector((state) => state.cart);
+    const cartList = Object.values(cart.items);
     let totalPrice = 0;
     function getTotal() {
       cartList.forEach((cartItem) => {
-        totalPrice += cartItem.quantity * cartItem.price;
+        totalPrice += cartItem.quantity * cartItem.price.value;
       });
       return totalPrice;
     }
@@ -34,4 +30,4 @@ function Cart() {
     }
 }
 
-export default Cart;
+export default ReduxCart;

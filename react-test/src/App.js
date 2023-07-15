@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import ProductsPage from "./Pages/ProductsPage";
 import CartPage from "./Pages/CartPage";
+import ReduxCartPage from "./Pages/ReduxCartPage";
 import CartContext from "./Context/CartContext";
 import NotFoundPage from "./Pages/NotFoundPage";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
@@ -38,6 +39,7 @@ export default function App() {
         <Switch>
           <Route exact={true} path="/" component={ProductsPage} />
           <Route exact={true} path="/cart" component={CartPage} />
+          <Route exact={true} path="/redux-cart" component={ReduxCartPage} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </div>

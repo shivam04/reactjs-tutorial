@@ -1,6 +1,7 @@
 import AddToCart from '../AddToCart';
 import Rating from '../Rating';
 import './ProductCard.css';
+import ReduxAddToCart from '../ReduxAddToCart'
 
 function ProductCard({ product }) {
     return (
@@ -10,6 +11,9 @@ function ProductCard({ product }) {
             <Rating rating={product.rating.value} maxRating={5} size={1} />
             <AddToCart 
                 product={product}
+            />
+            <ReduxAddToCart
+                product={product} 
             />
         </div>
     );

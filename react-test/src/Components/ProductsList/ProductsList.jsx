@@ -2,9 +2,9 @@ import ProductCard from '../ProductCard'
 import "./ProductsList.css";
 import { useEffect, useState, memo } from 'react';
 import { Link } from 'react-router-dom';
+import Categories from "../Categories";
 
 function ProductsList() {
-  console.log("productlist");
   let [isLoading, setLoadingState] = useState(true);
   let [allProducts, setAllProducts] = useState([]);
   // useEffect would be called once on mounting
@@ -32,6 +32,8 @@ function ProductsList() {
     return ( 
       <>
         <Link to="/cart" className='button-link'>Cart</Link>
+        <Link to="/redux-cart" className='button-link'>Redux Cart</Link>
+        <Categories />
         <div className="products">
             {allProducts.map(function (product) {
                 return (
