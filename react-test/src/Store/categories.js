@@ -1,7 +1,7 @@
 export function loadCategories() {
     return (dispatch) => {
         dispatch({ type: "LOAD_CATEGORIES_START" });
-        fetch("https://run.mocky.io/v3/297308ac-aeb0-4e98-8868-9c1d3a878a4c")
+        fetch("https://run.mocky.io/v3/18720816-1673-4182-ad7d-8575c5084503")
         .then(function (ressponse) {
             return ressponse.json();
         })
